@@ -3,17 +3,9 @@ package com.mac.bry.krew.pepowiny.DButils;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Projection;
-import org.hibernate.criterion.ProjectionList;
-import org.hibernate.criterion.Projections;
-import org.hibernate.transform.Transformers;
-
 import com.mac.bry.krew.pepowiny.entity.User;
 import com.mac.bry.krew.pepowiny.utils.UserPrintProcesor;
 

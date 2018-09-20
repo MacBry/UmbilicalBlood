@@ -2,9 +2,11 @@ package com.mac.bry.krew.pepowiny.appController;
 
 import java.util.InputMismatchException;
 
+import com.mac.bry.krew.pepowiny.DButils.DBHospitalUtility;
 import com.mac.bry.krew.pepowiny.DButils.DBUserUtility;
 import com.mac.bry.krew.pepowiny.entity.User;
 import com.mac.bry.krew.pepowiny.utils.DataReader;
+import com.mac.bry.krew.pepowiny.utils.HospitalDataReader;
 
 public class Controller {
 
@@ -24,6 +26,11 @@ public class Controller {
 	public static final int ADMINISTRATOR_SHOW_USERS = 6;
 	public static final int ADMINISTRATOR_EXIT_USER = 0;
 	
+	public static final int ADMINISTRATOR_ADD_HOSPITAL = 1;
+	public static final int ADMINISTRATOR_DELETE_HOSPITAL = 2;
+	public static final int ADMINISTRATOR_SHOW_ALL_HOSPITAL = 3;
+	public static final int ADMINISTRATOR_EEXIT_HOSPITAL = 0;
+	
 	public static final int USER_USER_OPTION = 1;
 	public static final int USER_HOSPITAL_OPTION = 2;
 	public static final int USER_UMBLICAL_OPTION = 3;
@@ -37,11 +44,15 @@ public class Controller {
 	private User user;
 	private DataReader dataReader;
 	private DBUserUtility dbUserUtility;
+	private DBHospitalUtility dbHospitalUtility;
+	private HospitalDataReader hospitalDataReader;
 	
 	public Controller() {
 		super();
 		this.dataReader = new DataReader();
 		this.dbUserUtility = new DBUserUtility();
+		this.dbHospitalUtility = new DBHospitalUtility();
+		this.hospitalDataReader = new HospitalDataReader();
 	}
 	
 	public void ProgramLoop() {
@@ -89,6 +100,7 @@ public class Controller {
 				break;
 					
 			case MAIN_ADMINISTRATOR_HOSPITAL_OPTION:
+				AdministratorHospitalMenue();
 				break;
 					
 			case MAIN_ADMINISTRATOR_UMBLICAL_OPTION:
@@ -202,7 +214,39 @@ public class Controller {
 		AdministratorLoop();
 	}
 	
+	public void AdministratorHospitalMenue () {
+		printAdministratotrHospitalMenuOptions();
+		int option;
+		while((option = dataReader.ReadNumber()) != ADMINISTRATOR_EEXIT_HOSPITAL) {
+			switch (option) {
+			case ADMINISTRATOR_ADD_HOSPITAL:
+				dbHospitalUtility.addHospital(hospitalDataReader.ReadAndCreateHospital());
+				break;
+			case ADMINISTRATOR_DELETE_HOSPITAL:
+				
+				break;
+			case ADMINISTRATOR_SHOW_ALL_HOSPITAL:
+				
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
 	
+	
+	private void printAdministratotrHospitalMenuOptions() {
+		printLine();
+		System.out.println("Chose Option: ");
+		printLine();
+		System.out.println("1. Add Hospital");
+		System.out.println("2. Delete Hospital");
+		System.out.println("3. Show all Hospital");
+		System.out.println("0. Exit ");
+		
+	}
+
 	public void printLoginOptions() {
 		printLine();
 		System.out.println("Chose Option: ");
