@@ -223,7 +223,7 @@ public class Controller {
 				dbHospitalUtility.addHospital(hospitalDataReader.ReadAndCreateHospital());
 				break;
 			case ADMINISTRATOR_DELETE_HOSPITAL:
-				
+				dbHospitalUtility.deleteHospitalById(dataReader.ReadNumber("ID"));
 				break;
 			case ADMINISTRATOR_SHOW_ALL_HOSPITAL:
 				

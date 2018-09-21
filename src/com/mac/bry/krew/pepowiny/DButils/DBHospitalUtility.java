@@ -37,8 +37,11 @@ public class DBHospitalUtility implements DBHospitalAPI{
 
 	@Override
 	public void deleteHospitalById(int id) {
-		// TODO Auto-generated method stub
-		
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		session.createQuery("delete from Hospital hospital where hospital.id='" + id + "'")
+			.executeUpdate();
+		session.getTransaction().commit();
 	}
 
 	@Override
