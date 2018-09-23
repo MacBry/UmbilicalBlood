@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import com.mac.bry.krew.pepowiny.DButils.API.DBHospitalAPI;
 import com.mac.bry.krew.pepowiny.entity.Hospital;
 import com.mac.bry.krew.pepowiny.entity.HospitalAdress;
+import com.mac.bry.krew.pepowiny.utils.HospitalPrintProcesor;
 
 public class DBHospitalUtility implements DBHospitalAPI{
 	
@@ -45,9 +46,31 @@ public class DBHospitalUtility implements DBHospitalAPI{
 	}
 
 	@Override
-	public List<Hospital> showAllHospital() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Hospital> getAllHospital() {
+		List<Hospital> tempHospitalList;
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		tempHospitalList = session.createQuery("from Hospital").getResultList();
+		session.getTransaction().commit();
+		return tempHospitalList;
+		
+	}
+
+	@Override
+	public List<HospitalAdress> getAllHospitalAdress() {
+		List<HospitalAdress> tempHospitalList;
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		tempHospitalList = session.createQuery("from HospitalAdress").getResultList();
+		session.getTransaction().commit();
+		
+		return tempHospitalList;
+	}
+
+	@Override
+	public void showFullHospitalList() {
+		HospitalPrintProcesor.printHospitalList(getAllHospital(), getAllHospitalAdress());
+		
 	}
 
 }

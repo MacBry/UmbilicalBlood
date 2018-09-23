@@ -8,5 +8,7 @@ import com.mac.bry.krew.pepowiny.entity.HospitalAdress;
 public interface DBHospitalAPI {
 	public void addHospital(Hospital hospital);
 	public void deleteHospitalById(int id);
-	public List<Hospital> showAllHospital();
+	public List<Hospital> getAllHospital();
+	public List<HospitalAdress> getAllHospitalAdress();
+	public void showFullHospitalList();
 }

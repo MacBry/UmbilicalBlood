@@ -221,18 +221,20 @@ public class Controller {
 			switch (option) {
 			case ADMINISTRATOR_ADD_HOSPITAL:
 				dbHospitalUtility.addHospital(hospitalDataReader.ReadAndCreateHospital());
+				AdministratorHospitalMenue();
 				break;
 			case ADMINISTRATOR_DELETE_HOSPITAL:
 				dbHospitalUtility.deleteHospitalById(dataReader.ReadNumber("ID"));
 				break;
 			case ADMINISTRATOR_SHOW_ALL_HOSPITAL:
-				
+				dbHospitalUtility.showFullHospitalList();
 				break;
 
 			default:
 				break;
 			}
 		}
+		AdministratorHospitalMenue();
 	}
 	
 	
