@@ -40,8 +40,8 @@ public class DBHospitalUtility implements DBHospitalAPI{
 	public void deleteHospitalById(int id) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		session.createQuery("delete from Hospital hospital where hospital.id='" + id + "'")
-			.executeUpdate();
+		Hospital hospitalToDelete = session.get(Hospital.class, id);
+		session.delete(hospitalToDelete);
 		session.getTransaction().commit();
 	}
 
@@ -71,6 +71,17 @@ public class DBHospitalUtility implements DBHospitalAPI{
 	public void showFullHospitalList() {
 		HospitalPrintProcesor.printHospitalList(getAllHospital(), getAllHospitalAdress());
 		
+	}
+
+	@Override
+	public Hospital getHospitalById(int id) {
+		Hospital tempHospital;
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		tempHospital = (Hospital)session.get(Hospital.class, id);
+		session.getTransaction().commit();
+		session.close();
+		return tempHospital;
 	}
 
 }

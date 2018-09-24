@@ -6,10 +6,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import com.mac.bry.krew.pepowiny.DButils.API.DBUserAPI;
 import com.mac.bry.krew.pepowiny.entity.User;
 import com.mac.bry.krew.pepowiny.utils.UserPrintProcesor;
 
-public class DBUserUtility {
+public class DBUserUtility implements DBUserAPI {
 	
 	private SessionFactory factory;
 
@@ -21,6 +23,7 @@ public class DBUserUtility {
 				.buildSessionFactory();
 	}
 	
+	@Override
 	public boolean loginCheck(User tempUser) {
 		List<User> userList;
 		Session session = factory.getCurrentSession();
@@ -33,6 +36,7 @@ public class DBUserUtility {
 		else return true ;
 	}
 	
+	@Override
 	public boolean permissionCheck(User tempUser) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -41,6 +45,7 @@ public class DBUserUtility {
 		return user.isPermission();
 	}
 	
+	@Override
 	public void addUser(User user) {
 		List<User> userList;
 		
@@ -70,6 +75,7 @@ public class DBUserUtility {
 		else UserPrintProcesor.userPrintUsersList(userList);
 	}
 	
+	@Override
 	public void showUsers() {
 		List <Integer> idList;
 		List <User> userList = new ArrayList<User>();
@@ -84,9 +90,9 @@ public class DBUserUtility {
 		}
 		UserPrintProcesor.administratorPrintUsersList(userList);
 		
-		
 	}
 	
+	@Override
 	public void deleteUserByID(int id) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -94,6 +100,7 @@ public class DBUserUtility {
 		session.getTransaction().commit();
 	}
 	
+	@Override
 	public User findUserByID(int ID) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -101,6 +108,7 @@ public class DBUserUtility {
 		return tempUser;
 	}
 	
+	@Override
 	public int findUserIDByLoginAndPassword(User user) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -115,6 +123,7 @@ public class DBUserUtility {
 		
 	}
 	
+	@Override
 	public void editLogin(User user, String newLogin) {
 		String oldLogin = user.getLogin();
 		Session session = factory.getCurrentSession();
@@ -123,6 +132,7 @@ public class DBUserUtility {
 		System.out.println("You have changed field from " + oldLogin + " to " + user.getLogin());
 	}
 	
+	@Override
 	public void editPassword(User user, String newPassword) {
 		String oldPassword = user.getLogin();
 		Session session = factory.getCurrentSession();
@@ -131,8 +141,7 @@ public class DBUserUtility {
 		System.out.println("You have changed field from " + oldPassword + " to " + user.getPassword());
 	}
 	
-	
-	
+	@Override
 	public void editPermission(User user) {
 		boolean oldPermission = user.isPermission();
 		Session session = factory.getCurrentSession();

@@ -11,4 +11,5 @@ public interface DBHospitalAPI {
 	public List<Hospital> getAllHospital();
 	public List<HospitalAdress> getAllHospitalAdress();
 	public void showFullHospitalList();
+	public Hospital getHospitalById(int id);
 }
