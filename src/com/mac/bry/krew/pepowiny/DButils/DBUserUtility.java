@@ -96,7 +96,8 @@ public class DBUserUtility implements DBUserAPI {
 	public void deleteUserByID(int id) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		session.createQuery("delete from User user where user.id='" + id + "'").executeUpdate();
+		User userToDelete = session.get(User.class, id);
+		session.delete(userToDelete);
 		session.getTransaction().commit();
 	}
 	

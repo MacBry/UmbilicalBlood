@@ -178,35 +178,42 @@ public class Controller {
 			case ADMINISTRATOR_ADD_USER:
 				System.out.println("Add User");
 				dbUserUtility.addUser(dataReader.ReadAndCreateUser());
+				AdministratorUserMenue();
 				break;
 				
 			case ADMINISTRATOR_DELETE_USER:
 				System.out.println("Delete User");
 				dbUserUtility.deleteUserByID(dataReader.ReadNumber("ID"));
+				AdministratorUserMenue();
 				break;
 				
 			case ADMINISTRATOR_EDIT_LOGIN_USER:
 				System.out.println("Edit Login User");
 				dbUserUtility.editLogin(dbUserUtility.findUserByID(dataReader.ReadNumber("ID")), dataReader.ReadString("new Login"));
+				AdministratorUserMenue();
 				break;
 				
 			case ADMINISTRATOR_EDIT_PASSWORD_USER:
 				System.out.println("Edit Password User");
 				dbUserUtility.editPassword(dbUserUtility.findUserByID(dataReader.ReadNumber("ID")), dataReader.ReadString("new Password"));
+				AdministratorUserMenue();
 				break;
 				
 			case  ADMINISTRATOR_EDIT_PERMISSION_USER:
 				System.out.println("Edit Permission User");
 				dbUserUtility.editPermission(dbUserUtility.findUserByID(dataReader.ReadNumber("ID")));
+				AdministratorUserMenue();
 				break;
 				
 			case  ADMINISTRATOR_SHOW_USERS:
 				System.out.println("Show Users");
 				dbUserUtility.showAllUsers(true);
+				AdministratorUserMenue();
 				break;	
 				
 			default:
 				System.out.println("\nNo such option");
+				AdministratorUserMenue();
 				break;
 			}
 			
@@ -225,12 +232,16 @@ public class Controller {
 				break;
 			case ADMINISTRATOR_DELETE_HOSPITAL:
 				dbHospitalUtility.deleteHospitalById(dataReader.ReadNumber("ID"));
+				AdministratorHospitalMenue();
 				break;
 			case ADMINISTRATOR_SHOW_ALL_HOSPITAL:
 				dbHospitalUtility.showFullHospitalList();
+				AdministratorHospitalMenue();
 				break;
 
 			default:
+				System.out.println("\nNo such option");
+				AdministratorHospitalMenue();
 				break;
 			}
 		}
