@@ -31,6 +31,10 @@ public class Controller {
 	public static final int ADMINISTRATOR_SHOW_ALL_HOSPITAL = 3;
 	public static final int ADMINISTRATOR_EEXIT_HOSPITAL = 0;
 	
+	public static final int USER_ADD_HOSPITAL = 1;
+	public static final int USER_SHOW_ALL_HOSPITAL = 2;
+	public static final int USER_EEXIT_HOSPITAL = 0;
+	
 	public static final int USER_USER_OPTION = 1;
 	public static final int USER_HOSPITAL_OPTION = 2;
 	public static final int USER_UMBLICAL_OPTION = 3;
@@ -126,7 +130,7 @@ public class Controller {
 				break;
 				
 			case USER_HOSPITAL_OPTION:
-				
+				userHospitalMenue();
 				break;
 				
 			case USER_UMBLICAL_OPTION:
@@ -248,6 +252,30 @@ public class Controller {
 		AdministratorHospitalMenue();
 	}
 	
+	public void userHospitalMenue () {
+		printUserHospitalOptions();
+		int option;
+		while((option = dataReader.ReadNumber()) != USER_EEXIT_HOSPITAL) {
+			switch (option) {
+			case USER_ADD_HOSPITAL:
+				dbHospitalUtility.addHospital(hospitalDataReader.ReadAndCreateHospital());
+				userHospitalMenue();
+				break;
+				
+			case USER_SHOW_ALL_HOSPITAL:
+				dbHospitalUtility.showFullHospitalList();
+				userHospitalMenue();
+				break;
+
+			default:
+				System.out.println("\nNo such option");
+				userHospitalMenue();
+				break;
+			}
+		}
+		userHospitalMenue();
+	}
+	
 	
 	private void printAdministratotrHospitalMenuOptions() {
 		printLine();
@@ -257,10 +285,18 @@ public class Controller {
 		System.out.println("2. Delete Hospital");
 		System.out.println("3. Show all Hospital");
 		System.out.println("0. Exit ");
-		
+	}
+	
+	private void printUserHospitalOptions() {
+		printLine();
+		System.out.println("Chose Option: ");
+		printLine();
+		System.out.println("1. Add Hospital");
+		System.out.println("2. Show all Hospital");
+		System.out.println("0. Exit ");
 	}
 
-	public void printLoginOptions() {
+	private void printLoginOptions() {
 		printLine();
 		System.out.println("Chose Option: ");
 		printLine();
@@ -268,7 +304,7 @@ public class Controller {
 		System.out.println("0. Exit ");
 	}
 	
-	public void printMainAdministrationOptions() {
+	private void printMainAdministrationOptions() {
 		printLine();
 		System.out.println("Chose Option: ");
 		printLine();
@@ -278,7 +314,7 @@ public class Controller {
 		System.out.println("0. Exit ");
 	}
 	
-	public void printAdministratotrUserMenuOptions() {
+	private void printAdministratotrUserMenuOptions() {
 		printLine();
 		System.out.println("Chose Option: ");
 		printLine();
@@ -291,7 +327,7 @@ public class Controller {
 		System.out.println("0. Exit ");
 	}
 	
-	public void printUserMenueOptions() {
+	private void printUserMenueOptions() {
 		printLine();
 		System.out.println("Chose Option: ");
 		printLine();
@@ -301,7 +337,7 @@ public class Controller {
 		System.out.println("0. Exit ");
 	}
 	
-	public void printMainUserOptions() {
+	private void printMainUserOptions() {
 		printLine();
 		System.out.println("Chose Option: ");
 		printLine();
