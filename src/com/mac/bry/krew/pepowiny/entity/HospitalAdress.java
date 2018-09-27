@@ -100,6 +100,7 @@ public class HospitalAdress {
 		this.houseNumber = houseNumber;
 		this.localNumber = localNumber;
 	}
+	
 
 	public HospitalAdress() {
 		super();

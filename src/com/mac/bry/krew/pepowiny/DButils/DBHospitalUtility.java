@@ -15,7 +15,6 @@ public class DBHospitalUtility implements DBHospitalAPI{
 	
 	private SessionFactory factory;
 	
-
 	public DBHospitalUtility() {
 		super();
 		this.factory = new Configuration()
@@ -27,11 +26,9 @@ public class DBHospitalUtility implements DBHospitalAPI{
 
 	@Override
 	public void addHospital(Hospital hospital) {
-		
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		session.save(hospital);
-		
 		session.getTransaction().commit();
 		
 	}

@@ -101,6 +101,18 @@ public class MotherAdress {
 		this.houseNumber = houseNumber;
 		this.localNumber = localNumber;
 	}
+	
+
+	public MotherAdress(String city, String zipCode, String prefix, String street, String houseNumber,
+			String localNumber) {
+		super();
+		this.city = city;
+		this.zipCode = zipCode;
+		this.prefix = prefix;
+		this.street = street;
+		this.houseNumber = houseNumber;
+		this.localNumber = localNumber;
+	}
 
 	public MotherAdress() {
 		super();

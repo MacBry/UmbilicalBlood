@@ -95,6 +95,21 @@ public class Mother {
 		this.hospital = hospital;
 	}
 
+	public Mother(String surname, String name, String pESEL) {
+		super();
+		this.surname = surname;
+		this.name = name;
+		PESEL = pESEL;
+	}
+
+	public Mother(String surname, String name, String pESEL, MotherAdress motherAdress) {
+		super();
+		this.surname = surname;
+		this.name = name;
+		PESEL = pESEL;
+		this.motherAdress = motherAdress;
+	}
+
 	public Mother() {
 		super();
 	}
