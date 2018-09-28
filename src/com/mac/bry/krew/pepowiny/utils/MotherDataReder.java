@@ -33,6 +33,8 @@ public class MotherDataReder {
 	}
 	
 	private MotherAdress readAndCreateMotherAdres() {
+		System.out.println("Mother Adress SUB - Form:");
+		System.out.println("=========================");
 		System.out.println("Enter City: ");
 		String tempCity = scanner.nextLine();
 		
@@ -56,6 +58,8 @@ public class MotherDataReder {
 	}
 	
 	public Mother readAndCreateMother() {
+		System.out.println("Mother - Form:");
+		System.out.println("==============");
 		System.out.println("Enter mother surname: ");
 		String tempSurname = scanner.nextLine();
 		System.out.println("Enter mother name: ");
@@ -63,7 +67,7 @@ public class MotherDataReder {
 		System.out.println("Enter mother pesel: ");
 		String tempPESEL = scanner.nextLine();
 		Mother tempMother = new Mother(tempSurname, tempName, tempPESEL);
-		System.out.println("Enter mother pesel: ");
+		System.out.println("Enter hospital id: ");
 		int tempHospitalID = scanner.nextInt();
 		scanner.nextLine();
 		tempMother.setMotherAdress(readAndCreateMotherAdres());
