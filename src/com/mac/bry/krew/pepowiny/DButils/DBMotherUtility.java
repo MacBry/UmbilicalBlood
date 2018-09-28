@@ -7,8 +7,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.mac.bry.krew.pepowiny.DButils.API.DBMotherAPI;
+import com.mac.bry.krew.pepowiny.entity.Hospital;
+import com.mac.bry.krew.pepowiny.entity.HospitalAdress;
 import com.mac.bry.krew.pepowiny.entity.Mother;
 import com.mac.bry.krew.pepowiny.entity.MotherAdress;
+import com.mac.bry.krew.pepowiny.utils.MotherPrintProcesor;
 
 public class DBMotherUtility implements DBMotherAPI {
 
@@ -20,6 +23,8 @@ public class DBMotherUtility implements DBMotherAPI {
 				.configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Mother.class)
 				.addAnnotatedClass(MotherAdress.class)
+				.addAnnotatedClass(Hospital.class)
+				.addAnnotatedClass(HospitalAdress.class)
 				.buildSessionFactory();	
 	}
 	
@@ -89,6 +94,12 @@ public class DBMotherUtility implements DBMotherAPI {
 		session.getTransaction();
 		session.close();
 		return tempMotherAdressList;
+	}
+
+	@Override
+	public void showMothers() {
+		MotherPrintProcesor.printMotherList(getAllMothers(), getAllMothersAdress());
+		
 	}
 
 }

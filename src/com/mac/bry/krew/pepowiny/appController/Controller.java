@@ -3,10 +3,13 @@ package com.mac.bry.krew.pepowiny.appController;
 import java.util.InputMismatchException;
 
 import com.mac.bry.krew.pepowiny.DButils.DBHospitalUtility;
+import com.mac.bry.krew.pepowiny.DButils.DBMotherUtility;
 import com.mac.bry.krew.pepowiny.DButils.DBUserUtility;
 import com.mac.bry.krew.pepowiny.entity.User;
 import com.mac.bry.krew.pepowiny.utils.DataReader;
 import com.mac.bry.krew.pepowiny.utils.HospitalDataReader;
+import com.mac.bry.krew.pepowiny.utils.MotherDataReder;
+import com.mac.bry.krew.pepowiny.utils.MotherPrintProcesor;
 
 public class Controller {
 
@@ -45,11 +48,24 @@ public class Controller {
 	public static final int USER_SHOW_USERS = 3;
 	public static final int USER_EXIT_USER = 0;
 	
+	public static final int UMBLICAL_ADD_MOTHER = 1;
+	public static final int UMBLICAL_DELETE_MOTHER_BY_ID = 2;
+	public static final int UMBLICAL_DELETE_MOTHER_BY_SURNAME = 3;
+	public static final int UMBLICAL_FIND_MOTHER_BY_ID = 4;
+	public static final int UMBLICAL_FIND_MOTHER_BY_SURNAME = 5;
+	public static final int UMBLICAL_SHOW_FULL_MOTHERS_LIST = 6;
+	public static final int UMBLICAL_EXIT = 0;
+	
+	
+	  
 	private User user;
 	private DataReader dataReader;
 	private DBUserUtility dbUserUtility;
 	private DBHospitalUtility dbHospitalUtility;
 	private HospitalDataReader hospitalDataReader;
+	private MotherDataReder motherDataReder;
+	private DBMotherUtility dbMotherUtility;
+	
 	
 	public Controller() {
 		super();
@@ -57,6 +73,8 @@ public class Controller {
 		this.dbUserUtility = new DBUserUtility();
 		this.dbHospitalUtility = new DBHospitalUtility();
 		this.hospitalDataReader = new HospitalDataReader();
+		this.motherDataReder = new MotherDataReder();
+		this.dbMotherUtility = new DBMotherUtility();
 	}
 	
 	public void ProgramLoop() {
@@ -108,6 +126,7 @@ public class Controller {
 				break;
 					
 			case MAIN_ADMINISTRATOR_UMBLICAL_OPTION:
+				umblicalMenue();
 				break;
 					
 			default:
@@ -134,7 +153,7 @@ public class Controller {
 				break;
 				
 			case USER_UMBLICAL_OPTION:
-				
+				umblicalMenue();
 				break;
 
 			default:
@@ -143,6 +162,51 @@ public class Controller {
 			}
 		}
 		ProgramLoop();
+	}
+	
+	public void umblicalMenue() {
+		printMotherOption();
+		int option;
+		
+		while((option = dataReader.ReadNumber()) != UMBLICAL_EXIT) {
+			switch (option) {
+			case UMBLICAL_ADD_MOTHER:
+				dbMotherUtility.addMother(motherDataReder.readAndCreateMother());
+				umblicalMenue();
+				break;
+				
+			case UMBLICAL_DELETE_MOTHER_BY_ID:
+				dbMotherUtility.deleteMotherById(dataReader.ReadNumber("ID"));
+				umblicalMenue();
+				break;
+				
+			case UMBLICAL_DELETE_MOTHER_BY_SURNAME:
+				dbMotherUtility.deleteMotherById(dataReader.ReadNumber("surname"));
+				umblicalMenue();
+				break;
+				
+			case UMBLICAL_FIND_MOTHER_BY_ID:
+				
+				umblicalMenue();
+				break;
+				
+			case UMBLICAL_FIND_MOTHER_BY_SURNAME:
+				
+				umblicalMenue();
+				break;
+				
+			case UMBLICAL_SHOW_FULL_MOTHERS_LIST:
+				dbMotherUtility.showMothers();
+				umblicalMenue();
+				break;
+				
+
+			default:
+				System.out.println("\nNo such option");
+				umblicalMenue();
+				break;
+			}
+		}
 	}
 	
 	public void userUserMenue() {
@@ -276,6 +340,18 @@ public class Controller {
 		userHospitalMenue();
 	}
 	
+	private void printMotherOption() {
+		printLine();
+		System.out.println("Chose Option: ");
+		printLine();
+		System.out.println("1. Add mother");
+		System.out.println("2. Delete mother by ID");
+		System.out.println("3. Delete mother by surname");
+		System.out.println("4. Find mother by ID");
+		System.out.println("5. Find mother by surname");
+		System.out.println("6. Show full mothers list");
+		System.out.println("0. Exit ");
+	}
 	
 	private void printAdministratotrHospitalMenuOptions() {
 		printLine();

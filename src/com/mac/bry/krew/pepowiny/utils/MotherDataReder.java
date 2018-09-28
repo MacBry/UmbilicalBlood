@@ -2,6 +2,7 @@ package com.mac.bry.krew.pepowiny.utils;
 
 import java.util.Scanner;
 
+import com.mac.bry.krew.pepowiny.DButils.DBHospitalUtility;
 import com.mac.bry.krew.pepowiny.entity.Hospital;
 import com.mac.bry.krew.pepowiny.entity.Mother;
 import com.mac.bry.krew.pepowiny.entity.MotherAdress;
@@ -9,10 +10,12 @@ import com.mac.bry.krew.pepowiny.entity.MotherAdress;
 public class MotherDataReder {
 	
 	private Scanner scanner;
+	private DBHospitalUtility dbHospitalUtility;
 	
 	public MotherDataReder() {
 		super();
 		this.scanner = new Scanner(System.in);
+		this.dbHospitalUtility = new DBHospitalUtility();
 	}
 	
 	public void Close() {
@@ -60,7 +63,11 @@ public class MotherDataReder {
 		System.out.println("Enter mother pesel: ");
 		String tempPESEL = scanner.nextLine();
 		Mother tempMother = new Mother(tempSurname, tempName, tempPESEL);
+		System.out.println("Enter mother pesel: ");
+		int tempHospitalID = scanner.nextInt();
+		scanner.nextLine();
 		tempMother.setMotherAdress(readAndCreateMotherAdres());
+		tempMother.setHospital(dbHospitalUtility.getHospitalById(tempHospitalID));
 		return tempMother;
 	}
 	

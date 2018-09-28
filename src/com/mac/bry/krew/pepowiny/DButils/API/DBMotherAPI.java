@@ -13,4 +13,5 @@ public interface DBMotherAPI {
 	public Mother getMotherBySurname(String surname);
 	public List <Mother> getAllMothers();
 	public List <MotherAdress> getAllMothersAdress();	
+	public void showMothers();
 }
