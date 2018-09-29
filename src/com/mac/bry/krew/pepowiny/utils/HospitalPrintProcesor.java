@@ -67,7 +67,6 @@ public class HospitalPrintProcesor {
 			lp++;
 			System.out.println();
 		}
-		
 		printFirstFourLastHospitalRow();
 	}
 }
