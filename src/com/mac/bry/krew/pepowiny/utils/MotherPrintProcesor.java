@@ -56,34 +56,33 @@ public class MotherPrintProcesor {
 		printFirstFourLastMotherRow();
 		int lp=1;
 		for(int i = 0 ; i < mothersList.size() ; i++) {
-			for(int k = 0 ; k < mothersAdressList.size() ; k++) {
-				for(int j = 0 ; j < hospitalsList.size() ; j++) {
-					for(int m = 0 ; m < hospitalsAdressList.size() ; m++) {
-						if(mothersList.get(i).getId() == mothersAdressList.get(k).getId() 
-								&& mothersList.get(i).getHospital().getId() == hospitalsList.get(j).getId()
-								&& hospitalsList.get(j).getId() == hospitalsAdressList.get(m).getId());
-						
-						System.out.printf("|| %-5s || %-5s || %-14s || %-14s || %-14s || %-20s || %-10s || %-5s || %-25s || %-10s || %-10s || %-12s || %-12s ||",
-								lp,
-								mothersList.get(i).getId(),
-								mothersList.get(i).getSurname(),
-								mothersList.get(i).getName(),
-								mothersList.get(i).getPESEL(),
-								mothersAdressList.get(k).getCity(),
-								mothersAdressList.get(k).getZipCode(),
-								mothersAdressList.get(k).getPrefix(),
-								mothersAdressList.get(k).getStreet(),
-								mothersAdressList.get(k).getHouseNumber(),
-								mothersAdressList.get(k).getLocalNumber(),
-								hospitalsList.get(j).getId(),
-								hospitalsAdressList.get(j).getId());
-					}
-				}
+			for(int j = 0 ; j < mothersAdressList.size() ; j++)
+				for(int k = 0 ; k < hospitalsList.size() ; k++){
+				if(mothersList.get(i).getId() == mothersAdressList.get(j).getId() 
+						&& mothersList.get(i).getHospital().getId() == hospitalsList.get(k).getId()) {
+					System.out.printf("|| %-5s || %-5s || %-14s || %-14s || %-14s || %-20s || %-10s || %-5s || %-25s || %-10s || %-10s || %-12s || %-12s ||",
+							lp,
+							mothersList.get(i).getId(),
+							mothersList.get(i).getSurname(),
+							mothersList.get(i).getName(),
+							mothersList.get(i).getPESEL(),
+							mothersAdressList.get(j).getCity(),
+							mothersAdressList.get(j).getZipCode(),
+							mothersAdressList.get(j).getPrefix(),
+							mothersAdressList.get(j).getStreet(),
+							mothersAdressList.get(j).getHouseNumber(),
+							mothersAdressList.get(j).getLocalNumber(),
+							//1,1);
+							hospitalsList.get(k).getId(),
+							hospitalsAdressList.get(k).getId());
+							//hospitalsAdressList.get(k).getId());
+				}		
 			}
 			lp++;
-			System.out.println();
+			System.out.println();							
 		}
 		printFirstFourLastMotherRow();
 	}
+	
 	
 }
